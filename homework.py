@@ -39,3 +39,18 @@
 # print(f(dict1))
 
 # ===========================================================================
+
+
+class Car:
+    mileage = 0
+    def __init__(self, company = None, mark = None, year = None):
+        self.company = company
+        self.mark = mark
+        self.year = year
+
+    def description(self):
+        print(f"{self.company} {self.mark} is made in {self.year} and has {self.mileage} mileage")
+
+
+
+
