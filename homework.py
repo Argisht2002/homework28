@@ -1,56 +1,53 @@
-# 2․ Գրել ծրագիր, որը․
-#    - հետևյալ dict_1-ից կստանա նոր dict_2 այնպես, որ dict_2-ի key-երը լինեն dict_1-ի value-ները,
-#      իսկ value-ները՝ dict_1-ի value-ների երկարությունները,
-#    օրինակ՝ dict_1 = {1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'},
-#    պետք է ստացվի՝ dict_2 = {'red': 3, 'green': 5, 'black': 5, 'white': 5}:
+# 1․ Գրել Triangle class, որը․
+#    - __init__() -ում կընդունի եռանկյան կողմերը և կստուգի արդյոք նման կողմերով եռանկյուն գոյություն ունի թե ոչ,
+#      եթե կողմերը սխալ են տրված կվերադարձնի Error համապատասխան տեքստով,
+#    - կունենա մեթոդ, որը կվերադարձնի եռանկյան կողմերը,
+#    - կունենա մեթոդ, որը կվերադարձնի եռանկյան պարագիծը,
+#    - կունենա մեթոդ, որը կվերադարձնի եռանկյան մակերեսը,
+#    - կունենա մեթոդ, որը կստուգի արդյոք եռանկյունը հավասարակողմ է, հավասարասրուն, թե անկանոն (կողմերը իրար = չեն),
+#    - կունենա մեթոդ, որը կստուգի արդյոք եռանկյունը ուղղանկյուն եռանկյուն է, թե ոչ,
+#    - կունենա մեթոդ, որը կգտնի եռանկյան անկյունները,
+#    - կարող եք գրել նաև այլ մեթոդներ, որոնց միջոցով կստանաք տրված եռանկյան վերաբերյալ այլ ինֆորմացիա
+#      (օրինակ՝ ներգծած և արտագծած շրջանագծերի շառավղերը և այլն)․ բանաձևերը կարող եք գտնել համացանցում։
+import math
+
+class Triangle:
+    def __init__(self, a,b,c):
+        if a + b < c or a + c < b or b + c < a:
+            raise ValueError("Not a triangle")
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def koxmer(self):
+        return self.a,self.b,self.c
+
+    def p(self):
+        return self.a + self.b + self.c
+
+    def s(self):
+        return ((self.a + self.b + self.c)*(self.a + self.b)*(self.a + self.c)*(self.b + self.c))**0.5
+
+    def ankanon(self):
+        if self.a == self.b == self.c:
+            return "havasarakoxm"
+        if self.a == self.b or self.a == self.c or self.b == self.c:
+            return 'havasarasrun'
+        return "ankanon"
+    def uxxankyun(self):
+        return bool(self.a**2 + self.b**2 == self.c**2) or bool(self.a**2 + self.c**2 == self.b**2) or bool(self.c**2 + self.b**2 == self.a**2)
+
+    def ankyunner(self):
+        self.cosA = (self.b**2 + self.c**2 - self.a**2)/(2*self.b*self.c)
+        self.cosB = (self.a**2 + self.c**2 - self.b**2)/(2*self.a*self.c)
+        self.cosC = (self.a**2 + self.b**2 - self.c**2)/(2*self.a*self.b)
+        self.A = round(math.degrees(math.acos(self.cosA)),3)
+        self.B = round(math.degrees(math.acos(self.cosB)),3)
+        self.C = round(math.degrees(math.acos(self.cosC)),3)
+        return self.A,self.B,self.C
 
 
 
-# def f(d1):
-#     d2 = {}
-#     for i in d1.values():
-#         d2[i] = len(i)
-#     return d2
-#
-#
-#
-# dict_1 = {1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'}
-# print(f(dict_1))
-
-# ================================================================
-
-# 3. Գրել ֆունկցիա, որը․
-#    - կֆիլտրի տրված dictionary-ի value-ները, թողնելով միայն կենտ թվերը,
-#    - կվերադարձնի ստացված dictionary-ն,
-#    օրինակ՝ {'a': [1, 8, 3, 7, 2], 'b': [12, 4, 8, 4], 'c': [9, 9, 2, 8, 5]},
-#    պետք է ստացվի՝ {'a': [1, 3, 7], 'b': [], 'c': [9, 9, 5]}:
-
-
-# def f(d1):
-#     d2 = {}
-#     for i in d1.keys():
-#         d2[i] = [j for j in d1[i] if j%2 == 1]
-#     return d2
-#
-#
-#
-# dict1 = {'a': [1, 8, 3, 7, 2], 'b': [12, 4, 8, 4], 'c': [9, 9, 2, 8, 5]}
-#
-# print(f(dict1))
-
-# ===========================================================================
-
-
-class Car:
-    mileage = 0
-    def __init__(self, company = None, mark = None, year = None):
-        self.company = company
-        self.mark = mark
-        self.year = year
-
-    def description(self):
-        print(f"{self.company} {self.mark} is made in {self.year} and has {self.mileage} mileage")
-
-
-
+t = Triangle(4,3,4)
+print(f'p = {t.p()} \n s = {t.s()} \n {t.ankanon()} \n ankyunnery = {t.ankyunner()}')
 
